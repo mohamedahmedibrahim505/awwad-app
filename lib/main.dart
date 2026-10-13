@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 const String apiKey = String.fromEnvironment('GEMINI_API_KEY');
-const String modelName = 'gemini-2.5-flash';
+const String modelName = 'gemini-1.5-flash';
+
 
 const String userPrompt =
     'أنت "عواد"، مساعد ذكاء اصطناعي مصري ظريف وودود. ترد بلهجة مصرية شعبية خفيفة الدم، وبإجابات قصيرة وواضحة، وتنادي المستخدم "يا باشا".';
@@ -43,7 +44,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final List<Msg> _msgs = [
-    Msg('model', 'منور يا باشا، أنا عواد معاك وجاهز لأي أمر!')
+    Msg('model', 'احلا مسا على الناس الكويسة، اتفضل انا تحت امرك')
   ];
   final TextEditingController _ctrl = TextEditingController();
   final ScrollController _scroll = ScrollController();
@@ -96,7 +97,7 @@ class _ChatPageState extends State<ChatPage> {
     try {
       reply = await _ask();
     } catch (e) {
-      reply = 'ما قدرت أرد هلأ، جرّب مرة ثانية ($e)';
+      reply = 'اديني ثانية مش قادر ارد عليك$e)';
     }
     if (!mounted) return;
     setState(() {
@@ -165,7 +166,7 @@ class _ChatPageState extends State<ChatPage> {
           if (_loading)
             const Padding(
               padding: EdgeInsets.all(8),
-              child: Text('عواد عم يكتب...',
+              child: Text('قاعد اكتب اصبر شوية...',
                   style: TextStyle(color: Colors.grey)),
             ),
           SafeArea(
@@ -178,7 +179,7 @@ class _ChatPageState extends State<ChatPage> {
                       controller: _ctrl,
                       onSubmitted: (_) => _send(),
                       decoration: InputDecoration(
-                        hintText: 'اكتب رسالتك...',
+                        hintText: 'إنجز عايز ايه ؟...',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(24)),
                         contentPadding: const EdgeInsets.symmetric(
